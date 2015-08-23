@@ -46,3 +46,11 @@ if __name__ == '__main__':
     print(timed_run("/home/wilfred/projects/bfc/squares"))
     print()
     
+    print("Program: fibs.bf")
+    print("Interpreter: ")
+    print(timed_run("{} < fibs.bf".format(interpreter)))
+
+    print("Compiled: ")
+    print(timed_run("/home/wilfred/projects/bfc/fibs"))
+    print()
+    
