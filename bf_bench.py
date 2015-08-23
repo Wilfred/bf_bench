@@ -26,29 +26,23 @@ if __name__ == '__main__':
     print("Interpreter: ")
     print(timed_run("{} < hello_world.bf".format(interpreter)))
 
-    compiled = "/home/wilfred/projects/bfc/hello_world"
-
     print("Compiled: ")
-    print(timed_run(compiled))
+    print(timed_run("/home/wilfred/projects/bfc/hello_world"))
     print()
 
     print("Program: bottles.bf")
     print("Interpreter: ")
     print(timed_run("{} < bottles.bf".format(interpreter)))
 
-    compiled = "/home/wilfred/projects/bfc/bottles"
-
     print("Compiled: ")
-    print(timed_run(compiled))
+    print(timed_run("/home/wilfred/projects/bfc/bottles"))
     print()
     
     print("Program: squares.bf")
     print("Interpreter: ")
     print(timed_run("{} < squares.bf".format(interpreter)))
 
-    compiled = "/home/wilfred/projects/bfc/squares"
-
     print("Compiled: ")
-    print(timed_run(compiled))
+    print(timed_run("/home/wilfred/projects/bfc/squares"))
     print()
     
