@@ -42,3 +42,13 @@ if __name__ == '__main__':
     print(timed_run(compiled))
     print()
     
+    print("Program: squares.bf")
+    print("Interpreter: ")
+    print(timed_run("{} < squares.bf".format(interpreter)))
+
+    compiled = "/home/wilfred/projects/bfc/squares"
+
+    print("Compiled: ")
+    print(timed_run(compiled))
+    print()
+    
