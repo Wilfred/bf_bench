@@ -4,7 +4,7 @@ from time import time
 import os
 
 
-def timed_run(command, program="hello_world.bf", runs=10):
+def timed_run(command, runs=10):
     """Run BF implementation command with program specified, and return a
     list of timings.
 
@@ -12,15 +12,33 @@ def timed_run(command, program="hello_world.bf", runs=10):
     timings = []
     for _ in range(runs):
         start_time = time()
-        os.system("{} < {}".format(command, program))
+        os.system("{} > /dev/null".format(command))
         elapsed = time() - start_time
         timings.append(elapsed)
 
     return timings
 
 
-INTERPRETER = "/home/wilfred/projects/brainfrack/c/brainfrack"
-
-
 if __name__ == '__main__':
-    print(timed_run(INTERPRETER))
+    interpreter = "/home/wilfred/projects/brainfrack/c/brainfrack"
+
+    print("Program: hello_world.bf")
+    print("Interpreter: ")
+    print(timed_run("{} < hello_world.bf".format(interpreter)))
+
+    compiled = "/home/wilfred/projects/bfc/hello_world"
+
+    print("Compiled: ")
+    print(timed_run(compiled))
+    print()
+
+    print("Program: bottles.bf")
+    print("Interpreter: ")
+    print(timed_run("{} < bottles.bf".format(interpreter)))
+
+    compiled = "/home/wilfred/projects/bfc/bottles"
+
+    print("Compiled: ")
+    print(timed_run(compiled))
+    print()
+    
