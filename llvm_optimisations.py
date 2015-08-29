@@ -21,25 +21,33 @@ def timed_run(command, runs=10):
     return timings
 
 
-def compile_bf(program, llvm_opt):
+def compile_bf(program, bfc_opt, llvm_opt): 
     """Compare our test programs with and without LLVM optimisations. We
     use peephole optimisation from bfc, but no speculative execution.
 
     """
     compiler = "/home/wilfred/projects/bfc/target/debug/bfc"
-    os.system("{} {} --opt=1 --llvm-opt={}".format(compiler, program, llvm_opt))
+    os.system("{} {} --opt={} --llvm-opt={}".format(compiler, program, bfc_opt, llvm_opt))
 
 
 def bench_program(program):
     print("Program: {}".format(program))
     
-    print("Without LLVM optimisations: ")
-    compile_bf("{}.bf".format(program), llvm_opt=0)
-    print(timed_run("./{}".format(program)))
+    print("Baseline: ")
+    compile_bf("{}.bf".format(program), bfc_opt=0, llvm_opt=0)
+    print(min(timed_run("./{}".format(program))))
 
-    print("With LLVM optimisations: ")
-    compile_bf("{}.bf".format(program), llvm_opt=3)
-    print(timed_run("./{}".format(program)))
+    print("Peephole only: ")
+    compile_bf("{}.bf".format(program), bfc_opt=1, llvm_opt=0)
+    print(min(timed_run("./{}".format(program))))
+
+    print("LLVM only: ")
+    compile_bf("{}.bf".format(program), bfc_opt=0, llvm_opt=3)
+    print(min(timed_run("./{}".format(program))))
+
+    print("Peephole and LLVM: ")
+    compile_bf("{}.bf".format(program), bfc_opt=1, llvm_opt=3)
+    print(min(timed_run("./{}".format(program))))
     print()
 
 if __name__ == '__main__':
