@@ -19,38 +19,22 @@ def timed_run(command, runs=10):
     return timings
 
 
-if __name__ == '__main__':
+def inter_vs_comp(program):
+    compiler = "/home/wilfred/projects/bfc/target/debug/bfc"
     interpreter = "/home/wilfred/projects/brainfrack/c/brainfrack"
 
-    print("Program: hello_world.bf")
+    print("Program: {}".format(program))
     print("Interpreter: ")
-    print(timed_run("{} < hello_world.bf".format(interpreter)))
+    print(min(timed_run("{} < {}.bf".format(interpreter, program))))
 
+    os.system("{} {}.bf --opt=0 --llvm-opt=0".format(compiler, program))
     print("Compiled: ")
-    print(timed_run("/home/wilfred/projects/bfc/hello_world"))
+    print(min(timed_run("./{}".format(program))))
     print()
 
-    print("Program: bottles.bf")
-    print("Interpreter: ")
-    print(timed_run("{} < bottles.bf".format(interpreter)))
 
-    print("Compiled: ")
-    print(timed_run("/home/wilfred/projects/bfc/bottles"))
-    print()
-    
-    print("Program: squares.bf")
-    print("Interpreter: ")
-    print(timed_run("{} < squares.bf".format(interpreter)))
-
-    print("Compiled: ")
-    print(timed_run("/home/wilfred/projects/bfc/squares"))
-    print()
-    
-    print("Program: fibs.bf")
-    print("Interpreter: ")
-    print(timed_run("{} < fibs.bf".format(interpreter)))
-
-    print("Compiled: ")
-    print(timed_run("/home/wilfred/projects/bfc/fibs"))
-    print()
-    
+if __name__ == '__main__':
+    inter_vs_comp("hello_world")
+    inter_vs_comp("bottles")
+    inter_vs_comp("squares")
+    inter_vs_comp("fibs")
